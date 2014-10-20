@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="http://yastatic.net/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://yastatic.net/jquery-ui/1.11.1/jquery-ui.min.js"></script>
+    <script src="http://yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="demo/rangeslider.js-0.3.5/rangeslider.css">
+    <script src="demo/rangeslider.js-0.3.5/rangeslider.min.js"></script>
+    <script src="PassGenJS.js"></script>
+    <title>PassGenJS. Javascript-библиотека для генерации паролей</title>
+</head>
+<body>
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    pre {
+        border-radius: 0;
+        border: none;
+        border-left: solid 3px #759CBD;
+    }
+
+    code {
+        display: inline-block;
+        background: none;
+        padding: 0 0 0 5px !Important;
+        color: #5e5e5e;
+    }
+
+    pre code {
+        color: #5e5e5e;
+    }
+
+    h5 {
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .main-title-container {
+        margin: 0 0 50px 0;
+        padding: 55px 0;
+        background: rgb(241, 241, 241) url(demo/images/bg.png);
+        border-bottom: solid 1px #dcdcdc;
+        box-shadow: 0 1px 1px rgba(192, 192, 192, 0.25);
+        color: #fff;
+    }
+
+    .main-title-button-container {
+        margin-top: 20px;
+    }
+
+    .main-title-button-container .btn {
+        margin-right: 5px;
+        width: 150px;
+    }
+
+    .main-title-button-container .btn-primary:last-of-type {
+        margin-right: 0;
+    }
+
+    .main-title {
+        font-family: 'Roboto Condensed', sans-serif;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.36);
+        margin-bottom: 4px;
+        margin-top: 0;
+        font-size: 51px;
+    }
+
+    .main-title-description {
+        font-size: 16px;
+        margin-top: 10px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.36);
+    }
+
+    .main-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-container-wrap {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .input-container {
+        text-align: сenter;
+        width: 1020px;
+        margin: 0 auto;
+    }
+
+    .progress {
+        margin-top: 5px;
+        border-radius: 0;
+        margin-bottom: 0;
+        height: 10px;
+    }
+
+    .progress-text {
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .password-reliabilityPercent {
+        position: relative;
+        top: 5px;
+        left: 3px;
+        font-size: 40px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.07);
+    }
+
+    .password-reliabilityPercent--red {
+        color: #D43632;
+    }
+
+    .password-reliabilityPercent--green {
+        color: #42b871;
+    }
+
+    .password-reliabilityPercent--yellow {
+        color: #E29E3E;
+    }
+
+    .input-container-form {
+        display: inline-block;
+        vertical-align: top;
+        width: 380px;
+        text-align: left;
+    }
+
+    .input-container-code {
+        display: inline-block;
+        vertical-align: top;
+        width: 380px;
+        margin-left: 50px;
+        text-align: left;
+    }
+
+    .input-pass {
+        border-radius: 0;
+        outline: none !important;
+    }
+
+    .input-pass:focus {
+        box-shadow: inset 1px 1px 1px rgba(192, 192, 192, 0.59);
+        border-color: #ccc;
+    }
+
+    .bs-callout {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .bs-callout .btn-xs {
+        font-size: 11px;
+        outline: none;
+        position: absolute;
+        right: 0;
+        top: 23px;
+    }
+
+    .a-local {
+        display: inline-block;
+        border-bottom: dotted 1px #B81A1A;
+        color: #B81A1A;
+    }
+
+    .a-local:hover {
+        border-bottom: dotted 1px #B81A1A;
+        color: #B81A1A;
+        text-decoration: none;
+    }
+
+    .input-container-code h5:first-of-type {
+        margin-top: 0;
+    }
+
+    .result-json-container {
+        margin-top: 30px;
+    }
+
+    .table-doc-wrap {
+        margin-top: 40px;
+        font-size: 11px;
+        text-align: left;
+    }
+
+    .size-11 {
+        font-size: 11px;
+    }
+
+    .table>thead>tr>th {
+        background: rgb(241, 241, 241);
+        border-bottom-width: 1px;
+        padding: 5px;
+    }
+
+    .title-table-doc {
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .btn-default {
+        border-radius: 0;
+        border-color: #ebebeb
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.26);
+    }
+
+    .btn-primary {
+        /*background-color: #759CBD;*/
+        /*border-color: #6895BD;*/
+        background-color: #42b871;
+        border-color: #43ac64;
+        border-radius: 0;
+        outline: none !important;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.26);
+    }
+
+    .btn-primary:hover {
+        background-color: #59b874;
+        border-color: #3d9d5b;
+    }
+
+    .btn-primary:active {
+        background-color: #3a784c;
+        border-color: #2f7845;
+    }
+
+    .btn-primary:focus {
+        background-color: #3a784c;
+        border-color: #358950;
+    }
+
+    .slider-reliability {
+        position: relative;
+        margin: 15px 0;
+        background: rgb(219, 219, 219);
+        display: block;
+        height: 6px;
+    }
+
+    .slider-reliability .ui-slider-handle {
+        display: block;
+        position: absolute;
+        background: #42b871;
+        border: solid 1px #3eaf6b;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        top: -11px;
+        outline: none;
+        cursor: pointer;
+        font-size: 12px;
+        color: #fff;
+        line-height: 27px;
+        text-align: center;
+        padding-right: 1px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.26);
+    }
+
+    .copy {
+        margin: 30px 0 20px 0;
+        font-size: 11px;
+        text-align: right;
+        color: #999;
+    }
+
+    .copy a {
+        color: #999;
+    }
+
+    .params-pass {
+        font-size: 12px;
+    }
+
+    .params-pass table {
+        width: 100%;
+    }
+
+    .params-pass td {
+        padding: 5px;
+    }
+
+    .params-pass input {
+        width: 80px;
+    }
+
+    .progress-bar-success {
+        background-color: #42b871;
+    }
+
+    .progress-bar-warning {
+        background-color: #E29E3E;
+    }
+
+    .progress-bar-danger {
+        background-color: #D43632;
+    }
+
+    .name-score {
+        text-align: center;
+        font-size: 30px;
+        margin: 10px 0 85px 0;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.07);
+    }
+
+    .name-score--red {
+        color: #D43632;
+    }
+
+    .name-score--green {
+        color: #42b871;
+    }
+
+    .name-score--yellow {
+        color: #E29E3E;
+    }
+</style>
+
+<script>
+
+    $(function () {
+
+        function resetAllState (params) {
+
+            if (!params) {
+                slider.slider('value', 0);
+                slider.find('.ui-slider-handle').text(0);
+                $('.params-pass [type="number"]').val(0);
+            } else if (params.slider === false) {
+                $('.params-pass [type="number"]').val(0);
+            } else if (params.params === false) {
+                slider.slider('value', 0);
+                slider.find('.ui-slider-handle').text(0);
+            }
+        }
+
+        function updatePassword(objParams) {
+            var password = PassGenJS.getPassword(objParams);
+            input.val(password).change();
+        }
+
+        $('.params-pass input').on('input change', function(){
+            resetAllState({params: false});
+
+            var val = $.trim($(this).val()).replace(/[^0-9]+/ig, '');
+            $(this).val(val);
+
+            if (val) {
+                var objParams = {
+                    numbers: $('#id-params-numbers').val() ? $('#id-params-numbers').val() : 0,
+                    letters: $('#id-params-letters').val() ? $('#id-params-letters').val() : 0,
+                    symbols: $('#id-params-symbols').val() ? $('#id-params-symbols').val() : 0,
+                    lettersUpper: $('#id-params-lettersUpper').val() ? $('#id-params-lettersUpper').val() : 0
+                }
+
+                updatePassword(objParams);
+            }
+        });
+
+        var input = $('#id-input-pass');
+        var progress = $('#id-progress');
+        var passwroddReliabilityPercent = $('#id-passwordReliabilityPercent');
+        var codeResult = $('#id-result-json code');
+        var slider = $('.slider-reliability');
+
+        function passSet(password){
+            var scorePass = PassGenJS.getScore(password);
+
+            switch (scorePass.score) {
+                case 1:
+                {
+                    progress.removeClass().addClass('progress-bar progress-bar-danger');
+                    $('.password-reliabilityPercent').removeClass().addClass('password-reliabilityPercent password-reliabilityPercent--red');
+                    $('.name-score').removeClass().addClass('name-score name-score--red').text('Слабый');
+                    break;
+                }
+                case 2:
+                {
+                    progress.removeClass().addClass('progress-bar progress-bar-warning');
+                    $('.password-reliabilityPercent').removeClass().addClass('password-reliabilityPercent password-reliabilityPercent--yellow');
+                    $('.name-score').removeClass().addClass('name-score name-score--yellow').text('Средний');
+                    break;
+                }
+                case 3:
+                {
+                    progress.removeClass().addClass('progress-bar progress-bar-success');
+                    $('.password-reliabilityPercent').removeClass().addClass('password-reliabilityPercent password-reliabilityPercent--green');
+                    $('.name-score').removeClass().addClass('name-score name-score--green').text('Надёжный');
+                    break;
+                }
+                case 4:
+                {
+                    progress.removeClass().addClass('progress-bar progress-bar-success');
+                    $('.password-reliabilityPercent').removeClass().addClass('password-reliabilityPercent password-reliabilityPercent--green');
+                    $('.name-score').removeClass().addClass('name-score name-score--green').text('Сверхнадёжный');
+                    break;
+                }
+                default: {
+                    $('.password-reliabilityPercent').removeClass().addClass('password-reliabilityPercent');
+                    $('.name-score').removeClass().addClass('name-score').text('Пустой');
+                }
+            }
+
+            progress.css('width', scorePass.reliabilityPercent + '%');
+            passwroddReliabilityPercent.text(scorePass.reliabilityPercent + '%');
+        }
+
+        input.on('input change', function () {
+            var password = $(this).val();
+            password = password.replace(/[а-я]+/ig, '');
+            $(this).val(password);
+
+            passSet(password);
+
+            var passwordScore = PassGenJS.getScore(password);
+            var passwordScoreText = $('#id-tmpl-getScore').html();
+            passwordScoreText = passwordScoreText.replace('{{password}}', passwordScore.password);
+            passwordScoreText = passwordScoreText.replace('{{score}}', passwordScore.score);
+            passwordScoreText = passwordScoreText.replace('{{entropy}}', passwordScore.entropy);
+            passwordScoreText = passwordScoreText.replace('{{reliability}}', passwordScore.reliability);
+            passwordScoreText = passwordScoreText.replace('{{reliabilityPercent}}', passwordScore.reliabilityPercent);
+
+            codeResult.text(passwordScoreText);
+            $('#id-score-param').text(password);
+        });
+
+        $('.input-container-code [data-params]').on('click', function(){
+            resetAllState();
+
+            var data = eval('(' + $(this).attr('data-params') + ')');
+            updatePassword(data);
+        });
+
+        slider.slider({
+            animate: 'fast',
+            min: 0,
+            max: 100,
+            step: 1,
+            slide: function(event, ui) {
+                resetAllState({slider: false});
+
+                var val = ui.value;
+                $(ui.handle).text(val);
+                $('#id-label-reliabilityPercent').text(val);
+                updatePassword({reliabilityPercent: val});
+            },
+            stop: function(event, ui) {
+                resetAllState({slider: false});
+
+                var val = ui.value;
+                $(ui.handle).text(val);
+                $('#id-label-reliabilityPercent').text(val);
+                updatePassword({reliabilityPercent: val});
+            }
+        });
+
+        slider.find('.ui-slider-handle').text(0);
+        input.change();
+    });
+
+</script>
+
+<div style="display: none">
+
+<div id="id-tmpl-getScore">{
+    "password": "{{password}}",
+    "score": {{score}},
+    "entropy": {{entropy}},
+    "reliability": {{reliability}},
+    "reliabilityPercent": {{reliabilityPercent}}
+}</div>
+
+</div>
+
+<div class="main-container">
+    <div class="main-container-wrap">
+
+        <div class="main-title-container">
+            <h2 class="main-title">PassGenJS</h2>
+            <h1 class="main-title-description">Javascript-библиотека для генерации паролей</h1>
+
+            <div class="main-title-button-container">
+                <a class="btn btn-primary btn-lg" href="PassGenJS.js" target="_blank"><i class="fa fa-download"></i> Скачать</a>
+                <a class="btn btn-default btn-lg" href="https://github.com/amartov/PassGenJS" target="_blank"><i class="fa fa-github"></i> На GitHub</a>
+            </div>
+        </div>
+
+        <div class="input-container">
+
+            <div class="input-container-form">
+                <input type="text" id="id-input-pass" value="rtyu67" maxlength="27" class="form-control input-pass">
+
+                <div class="progress progress">
+                    <div class="progress-bar" id="id-progress" role="progressbar"></div>
+                </div>
+
+                <div class="progress-text">
+                    Надежность пароля -
+                    <span id="id-passwordReliabilityPercent" class="password-reliabilityPercent">0%</span>
+
+                    <div class="name-score"></div>
+                </div>
+
+                <div class="result-json-container">
+                    <h5>Результат работы метода getScore("<span id="id-score-param"></span>")</h5>
+                    <div id="id-result-json">
+                        <pre><code></code></pre>
+                    </div>
+                </div>
+
+            </div>
+            <div class="input-container-code">
+                <div class="bs-callout bs-callout-danger">
+                    <h5>Сверхнадёжный пароль</h5>
+                    <code>
+                        PassGenJS.getPassword({score: 4});
+                    </code>
+                    <button type="button" class="btn btn-primary btn-xs" data-params="{score: 4}"><span class="glyphicon glyphicon-repeat"></span> Получить</button>
+                </div>
+
+                <div class="bs-callout bs-callout-danger">
+                    <h5>Надёжный пароль</h5>
+                    <code>
+                        PassGenJS.getPassword({score: 3});
+                    </code>
+                    <button type="button" class="btn btn-primary btn-xs" data-params="{score: 3}"><span class="glyphicon glyphicon-repeat"></span> Получить</button>
+                </div>
+
+                <div class="bs-callout bs-callout-danger">
+                    <h5>Средний пароль</h5>
+                    <code>
+                        PassGenJS.getPassword({score: 2});
+                    </code>
+                    <button type="button" class="btn btn-primary btn-xs" data-params="{score: 2}"><span class="glyphicon glyphicon-repeat"></span> Получить</button>
+                </div>
+
+                <div class="bs-callout bs-callout-danger">
+                    <h5>Слабый пароль</h5>
+                    <code>
+                        PassGenJS.getPassword({score: 1});
+                    </code>
+                    <button type="button" class="btn btn-primary btn-xs" data-params="{score: 1}"><span class="glyphicon glyphicon-repeat"></span> Получить</button>
+                </div>
+
+                <div class="bs-callout bs-callout-danger">
+                    <h5>Получить пароль по % надежности</h5>
+                    <code>
+                        PassGenJS.getPassword({reliabilityPercent: <span id="id-label-reliabilityPercent">0</span>});
+                    </code>
+
+                    <div class="slider-reliability"></div>
+                </div>
+
+                <div class="bs-callout bs-callout-danger">
+                    <h5>Получить пароль по параметрам</h5>
+                    <div class="params-pass">
+                        <table>
+                            <tr>
+                                <td>Цифр</td>
+                                <td><input type="number" id="id-params-numbers" value="0"></td>
+                                <td>Символов</td>
+                                <td><input type="number" id="id-params-symbols" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Букв</td>
+                                <td><input type="number" id="id-params-letters" value="0"></td>
+                                <td>Букв (верхний рег.)</td>
+                                <td><input type="number" id="id-params-lettersUpper" value="0"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="table-doc-wrap">
+
+                <h4 class="title-table-doc">Описание методов</h4>
+
+                <table class="table table-condensed table-bordered table-doc">
+                    <thead>
+                    <th>
+                        Метод
+                    </th>
+                    <th>
+                        Параметры
+                    </th>
+                    <th>
+                        Результат
+                    </th>
+                    <th>
+                        Описание
+                    </th>
+                    </thead>
+                    <tr>
+                        <td><b>getPassword</b></td>
+                        <td>
+                            Object
+                            <div class="size-11">
+                                {<br>
+                                &nbsp;&nbsp; <b>score</b>: (number) - Надежность пароля (диапазон 1-4)<br>
+                                &nbsp;&nbsp; <b>reliabilityPercent</b>: - Надежность пароля в % (диапазон 1-100)<br>
+                                &nbsp;&nbsp; <b>letters</b>: (number) - Количество букв в пароле<br>
+                                &nbsp;&nbsp; <b>lettersUpper</b>: (number) - Количество заглавных букв в пароле<br>
+                                &nbsp;&nbsp; <b>numbers</b>: (number) - Количество цифр в пароле<br>
+                                &nbsp;&nbsp; <b>symbols</b>: (number) - Количество спец. символов в пароле
+                                <br>}
+                            </div>
+                        </td>
+                        <td>String</td>
+                        <td>Возвращает пароль</td>
+                    </tr>
+                    <tr>
+                        <td><b>getScore</b></td>
+                        <td>String</td>
+                        <td>
+                            Object
+                            <div class="size-11">
+                                {<br>
+                                &nbsp;&nbsp; <b>password</b>: (number) - Пароль<br>
+                                &nbsp;&nbsp; <b>entropy</b>: (number) - Энтропия пароля<br>
+                                &nbsp;&nbsp; <b>score</b>: (number) - Надежность пароля (4 - наилучший)<br>
+                                &nbsp;&nbsp; <b>reliability</b>: (number) - Надежность пароля (абсолютное значение)<br>
+                                &nbsp;&nbsp; <b>reliabilityPercent</b>: (number) - Надежность пароля в %
+                                <br>}
+                            </div>
+                        </td>
+                        <td>Возвращает объект с информацией о пароле</td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="copy">
+                © 2014 «<a href="http://linber.ru">Linber</a>» LLC
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
