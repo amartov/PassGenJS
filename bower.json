@@ -1,0 +1,23 @@
+{
+  "name": "PassGenJS",
+  "main": "PassGenJS.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/amartov/PassGenJS",
+  "authors": [
+    "Aleksey Martov <a-martov@linber.ru>"
+  ],
+  "description": "Library for generating passwords on client side",
+  "keywords": [
+    "password",
+    "generation",
+    "security"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
