@@ -143,8 +143,6 @@ var PassGenJS = (function () {
      * @private
      * @param {Object} obj Объект, содержащий параметры для генерации пароля
      * obj.score {Number} Число в диапазоне 1-4. Чем больше, тем надежнее пароль
-     * obj.minLength {Number} Минимальная длина пароля
-     * obj.maxLength {Number} Максимальная длина пароля
      * obj.maxGenerateRecursion {Number} Сколько итераций использовать для нахождения более стойкого пароля
      * От 0 до n. Значение по умолчанию 6. Чем больше значение, тем больше времени требуется на генерацию
      * и получение более надежного пароля.
@@ -252,23 +250,6 @@ var PassGenJS = (function () {
                         }
                     }
                 }
-
-                //if (obj.maxLength) {
-                //    var tmpIndex = 0;
-                //    for (var key in tmpScoreVariants) {
-                //        var countChars = 0;
-                //
-                //        for (var keyTypeChar in tmpScoreVariants[key]) {
-                //            countChars += parseInt(tmpScoreVariants[key][keyTypeChar]);
-                //        }
-                //
-                //        if (countChars > obj.maxLength) {
-                //            delete tmpScoreVariants[key];
-                //        }
-                //
-                //        tmpIndex++;
-                //    }
-                //}
 
                 var randomVariant = _getRandomOfVariants(arrayVariants);
 
