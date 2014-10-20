@@ -358,7 +358,6 @@ var PassGenJS = (function () {
      * @returns {Object}
      */
     function _generateScoreVariants() {
-        console.time('ty');
         var objResult = {};
 
         for (var i = 0; i < 6666; i++) {
@@ -395,7 +394,6 @@ var PassGenJS = (function () {
             }
         }
 
-        console.timeEnd('ty');
         return objResult;
     }
 
